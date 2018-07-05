@@ -7,7 +7,7 @@ MYSQL_USER=root
 MYSQL_PASSWORD=root
 
 # skip these databases from backup
-SKIP_DATABASES=
+SKIP_DATABASES="information_schema performance_schema sys"
 
 # backup destination directory
 DEST="/output"

@@ -3,8 +3,8 @@ FROM alpine
 # add cron
 RUN apk add --update apk-cron
 
-# add bash mysql client and gzip
-RUN apk add bash mysql-client gzip
+# add bash findutils mysql client and gzip
+RUN apk add bash findutils mysql-client gzip
 
 # clear apk cache
 RUN rm -rf /var/cache/apk/*

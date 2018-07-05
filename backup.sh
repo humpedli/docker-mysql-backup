@@ -20,6 +20,9 @@ GZIP="$(which gzip)"
 # get current date in yyyy-mm-dd format
 NOW="$(date +"%Y-%m-%d")"
 
+# current date and time
+DATETIME="$(date +"%Y-%m-%d %H:%M:%S")"
+
 # get all database list
 DBS="$($MYSQL -u $MYSQL_USER -h $MYSQL_HOST -P $MYSQL_PORT -p$MYSQL_PASSWORD -Bse 'show databases')"
 
@@ -40,3 +43,5 @@ do
         $MYSQLDUMP -u $MYSQL_USER -h $MYSQL_HOST -P $MYSQL_PORT -p$MYSQL_PASSWORD $db | $GZIP -9 > $FILE
     fi
 done
+
+echo "$DATETIME - MySQL backup script ... RUNNED"

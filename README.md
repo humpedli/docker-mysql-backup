@@ -1,15 +1,13 @@
+# Backup mysql databases with docker
+
 Backup mysql databases periodically (using cron rule)
-
-*Note: you can skip databases from backup if you define `SKIP_DATABASES=` environment variable and put database names after it (with space separator), default: `information_schema performance_schema sys`*
-
-*Note 2: define `KEEP_FILES_UNTIL=` environment variable to delete files after x days automatically, default: `30`*
 
 ## Usage
 
 **Docker command:**
 
 ```bash
-docker run --name=mysql-backup \
+docker run --name=backup-mysql \
   --restart=always \
   -v <path_to_backup_output>:/output \
   -v /etc/localtime:/etc/localtime:ro \
@@ -30,8 +28,8 @@ docker run --name=mysql-backup \
 ```bash
 version: '3'
 services:
-  mysql-backup:
-    container_name: "mysql-backup"
+  backup-mysql:
+    container_name: "backup-mysql"
     image: "humpedli/docker-mysql-backup"
     volumes:
       - "<path_to_backup_output>:/output"
@@ -48,3 +46,9 @@ services:
       - mysql
     restart: "always"
 ```
+
+## Note
+
+*You can skip databases from backup if you define `SKIP_DATABASES=` environment variable and put database names after it (with space separator), default: `information_schema performance_schema sys`*
+
+*Define `KEEP_FILES_UNTIL=` environment variable to delete files after x days automatically, default: `30`*
